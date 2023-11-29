@@ -34,7 +34,7 @@ parser.add_argument('--script-examples', action="store_true", help='Prints scrip
 parser.add_argument('-ip', help='iDRAC IP address, argument only required if configuring one iDRAC', required=False)
 parser.add_argument('-u', help='iDRAC username, argument only required if configuring one iDRAC', required=False)
 parser.add_argument('-p', help='iDRAC password, argument only required if configuring one iDRAC', required=False)
-group = parser.add_mutually_exclusive_group()
+group = parser.add_mutually_exclusive_group(required=True)
 group.add_argument('-r', help='Export metric reports only', action='store_true', required=False)
 group.add_argument('-m', help='Export metric reports with metrics', action='store_true', required=False)
 
@@ -93,7 +93,7 @@ def get_reports(ip, user, pwd, export_reports, export_metrics):
                     sys.exit()
 
         logging.info(output)
-        with open('GetTelemetryReports.csv', mode='w') as csv_file:
+        with open('GetTelemetryReports.csv', mode='w', newline='') as csv_file:
             csv_writer = csv.writer(csv_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
             csv_writer.writerows(output)
             logging.info("- INFO, successfully exported GetTelemetryReports.csv")
