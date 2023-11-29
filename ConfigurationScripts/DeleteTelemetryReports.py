@@ -34,7 +34,7 @@ parser.add_argument('-ip', help='iDRAC IP address, argument only required if con
 parser.add_argument('-u', help='iDRAC username, argument only required if configuring one iDRAC', required=False)
 parser.add_argument('-p', help='iDRAC password, argument only required if configuring one iDRAC', required=False)
 parser.add_argument('-f', help='Pass in csv file name. If file is not located in same directory as script, pass in the full directory path with file name. NOTE: Make sure to use iDRACs.csv file from the repo which has the correct format.', required=False)
-group = parser.add_mutually_exclusive_group()
+group = parser.add_mutually_exclusive_group(required=True)
 group.add_argument('-a', help='Delete all Metric Reports', action='store_true', required=False)
 group.add_argument('-n', help='Metric report name to delete. *Supports a comma delimted list', required=False)
 
